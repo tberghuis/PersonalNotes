@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/inbox_fragment">
+
+
+    <!-- TODO can i reuse the fragment class for Inbox, archive, trash ... not at first -->
+
+    <fragment
+        android:id="@+id/inbox_fragment"
+        android:name=".InboxFragment"
+        android:label="Inbox"
+        tools:layout="@layout/fragment_note_list">
+
+        <action
+            android:id="@+id/action_edit_note"
+            app:destination="@id/edit_note_fragment" />
+    </fragment>
+
+    <!--
+    <fragment
+        android:id="@+id/archive_fragment"
+        android:name=".ArchiveFragment"
+        android:label="Archive"
+         />
+
+    <fragment
+        android:id="@+id/trash_fragment"
+        android:name=".TrashFragment"
+        android:label="Trash"
+        />
+
+    -->
+
+    <fragment
+        android:id="@+id/edit_note_fragment"
+        android:name=".EditNoteFragment"
+        android:label="Edit Note"
+        tools:layout="@layout/fragment_plant_detail">
+        <argument
+            android:name="noteId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>
