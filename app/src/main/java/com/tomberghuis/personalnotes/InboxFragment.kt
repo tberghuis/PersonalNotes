@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.tomberghuis.personalnotes.databinding.FragmentInboxBinding
+import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class InboxFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -15,7 +18,24 @@ class InboxFragment : Fragment() {
         return binding.root
     }
 
-    //    override fun onCreateView(
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // add listener to FAB
+
+        fab_add_note.run {
+            setOnClickListener {
+                // TODO navigate to editnotefragment
+                Navigation.findNavController(view).navigate(R.id.action_edit_note)
+            }
+        }
+    }
+
+
+
+//    override fun onCreateView(
 //            inflater: LayoutInflater,
 //            container: ViewGroup?,
 //            savedInstanceState: Bundle?

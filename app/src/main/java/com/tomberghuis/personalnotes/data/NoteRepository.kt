@@ -16,6 +16,8 @@ class NoteRepository private constructor(private val noteDao: NoteDao) {
 
     fun getNote(noteId: Long) = noteDao.getNote(noteId)
 
+    fun getNoteData(noteId: Long) = noteDao.getNoteData(noteId)
+
     companion object {
 
         // For Singleton instantiation
