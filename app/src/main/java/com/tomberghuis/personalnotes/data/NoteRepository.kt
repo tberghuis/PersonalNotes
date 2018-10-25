@@ -5,10 +5,10 @@ import java.util.concurrent.Executors
 class NoteRepository private constructor(private val noteDao: NoteDao) {
 
 
-    fun createNote(note: String) {
+    fun insertNote(note: Note) {
         Executors.newSingleThreadExecutor().execute {
 //            val note = Note()
-            noteDao.insert(Note(note))
+            noteDao.insert(note)
         }
     }
 
@@ -16,7 +16,7 @@ class NoteRepository private constructor(private val noteDao: NoteDao) {
 
     fun getNote(noteId: Long) = noteDao.getNote(noteId)
 
-    fun getNoteData(noteId: Long) = noteDao.getNoteData(noteId)
+//    fun getNoteData(noteId: Long) = noteDao.getNoteData(noteId)
 
     companion object {
 

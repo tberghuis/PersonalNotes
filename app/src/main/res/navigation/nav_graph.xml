@@ -9,13 +9,15 @@
 
     <fragment
         android:id="@+id/inbox_fragment"
-        android:name=".InboxFragment"
+        android:name="com.tomberghuis.personalnotes.InboxFragment"
         android:label="Inbox"
-        tools:layout="@layout/fragment_note_list">
+        tools:layout="@layout/fragment_inbox">
 
         <action
             android:id="@+id/action_edit_note"
-            app:destination="@id/edit_note_fragment" />
+            app:destination="@id/edit_note_fragment" >
+
+        </action>
     </fragment>
 
     <!--
@@ -35,13 +37,14 @@
 
     <fragment
         android:id="@+id/edit_note_fragment"
-        android:name=".EditNoteFragment"
+        android:name="com.tomberghuis.personalnotes.EditNoteFragment"
         android:label="Edit Note"
-        tools:layout="@layout/fragment_plant_detail">
+        tools:layout="@layout/fragment_edit_note">
         <argument
             android:name="noteId"
-            android:defaultValue="-1"
-            app:argType="integer" />
+
+            app:argType="long"
+            />
     </fragment>
 
 </navigation>

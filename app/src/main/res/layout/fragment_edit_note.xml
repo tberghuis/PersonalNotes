@@ -5,22 +5,38 @@
         <import type="android.view.View"/>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.tomberghuis.personalnotes.viewmodels.EditNoteViewModel"/>
     </data>
-    <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/add_note_edit_text"
+        <FrameLayout
+            android:id="@+id/contentFrame"
             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/add_note_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="note goes here"
+                android:text="@={viewModel.note}"
+                />
+        </FrameLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_save_note"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="note goes here"
-            android:text="@={viewmodel.note}"
-             />
-
-
-    </LinearLayout>
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_done"
+            app:fabSize="normal"
+            app:layout_anchor="@id/contentFrame"
+            app:layout_anchorGravity="bottom|right|end" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
+
