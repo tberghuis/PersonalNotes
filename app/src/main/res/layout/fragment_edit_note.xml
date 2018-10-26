@@ -1,9 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
-        <import type="android.view.View"/>
-
         <variable
             name="viewModel"
             type="com.tomberghuis.personalnotes.viewmodels.EditNoteViewModel"/>
@@ -14,10 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/contentFrame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <!--<EditText-->
+                <!--android:id="@+id/add_note_edit_text"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="note goes here"-->
+                <!--android:text="@{viewModel.note}"-->
+                <!--/>-->
             <EditText
                 android:id="@+id/add_note_edit_text"
                 android:layout_width="match_parent"
@@ -25,7 +32,16 @@
                 android:hint="note goes here"
                 android:text="@={viewModel.note}"
                 />
-        </FrameLayout>
+
+
+            <EditText
+                android:id="@+id/tmp_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="note goes here"
+                android:text="will this be replaced"
+                />
+        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_save_note"

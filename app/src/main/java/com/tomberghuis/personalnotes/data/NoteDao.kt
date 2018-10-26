@@ -15,6 +15,9 @@ interface NoteDao {
     fun getNote(noteId: Long): LiveData<Note>
 
 
+    @Query("SELECT * FROM notes WHERE id = :noteId")
+    fun getNoteObject(noteId: Long): Note
+
 
 //    @Query("SELECT note FROM notes WHERE id = :noteId")
 //    fun getNoteData(noteId: Long): String

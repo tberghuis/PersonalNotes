@@ -2,32 +2,51 @@ package com.tomberghuis.personalnotes.viewmodels
 
 
 import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tomberghuis.personalnotes.R
 import com.tomberghuis.personalnotes.data.Note
 import com.tomberghuis.personalnotes.data.NoteRepository
+import kotlinx.coroutines.launch
 
 class EditNoteViewModel(
         private val noteRepository: NoteRepository,
         private val noteId: Long
 ) : ViewModel() {
 
-    var note: MutableLiveData<String> = MutableLiveData<String>().apply{
-        var initialNote = ""
-        // new notes have noteId = -1L
-//        if(noteId!=-1L) initialNote = noteRepository.getNoteData(noteId)
-        if(noteId!=-1L) initialNote = noteRepository.getNote(noteId).value?.note ?: ""
-        postValue(initialNote)
+    var note: MutableLiveData<String> = MutableLiveData<String>()
+
+    init{
+
+        if(noteId!=-1L) {
+            noteRepository.getNoteData(noteId){
+                noteData -> note.setValue(noteData)
+            }
+            //noteRepository.loadNoteData(noteId,this)
+        }
+
     }
 
-init{
-    // TODO how the hell am i getting -1
-    Log.d("aaa",""+noteId)
-}
+//    fun loadNoteDataCallback(noteData: String){
+//        note.value = noteData
+//    }
+
+
+    fun loadTmpNote(et: EditText){
+//        et.setText("hellp")
+
+        noteRepository.getNoteData(noteId){
+            noteData -> et.setText(noteData)
+        }
+
+
+    }
 
 
     fun saveNote() {
+
+
 
         val note = Note(note.value!!)
 

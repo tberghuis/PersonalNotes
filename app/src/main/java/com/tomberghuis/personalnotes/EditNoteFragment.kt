@@ -18,13 +18,15 @@ class EditNoteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        val noteId = EditNoteFragmentArgs.fromBundle(arguments).noteId
 
-        val factory = Injectors.provideEditNoteViewModelFactory(requireActivity(), -1L)
+        val factory = Injectors.provideEditNoteViewModelFactory(requireActivity(), noteId)
         mEditNoteViewModel = ViewModelProviders.of(this, factory)
                 .get(EditNoteViewModel::class.java)
 
         val binding = FragmentEditNoteBinding.inflate(inflater, container, false).apply {
             viewModel = mEditNoteViewModel
+            setLifecycleOwner(this@EditNoteFragment)
         }
         return binding.root
     }
@@ -38,6 +40,7 @@ class EditNoteFragment : Fragment() {
             setOnClickListener {
                 // save note
                 mEditNoteViewModel.saveNote()
+                mEditNoteViewModel.loadTmpNote(tmp_edit_text)
                 // TODO navigate to home
                 //Navigation.findNavController(view).navigate(R.id.action_edit_note)
             }
