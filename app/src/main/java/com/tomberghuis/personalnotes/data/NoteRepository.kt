@@ -27,8 +27,12 @@ class NoteRepository private constructor(private val noteDao: NoteDao) {
 
     // doAsync
 
-    fun getNoteData(noteId: Long, callback: (String) -> Unit)  {
+    fun getNoteDataAsync(noteId: Long): Deferred<String> = GlobalScope.async(IO)  {
+        return@async noteDao.getNoteObject(noteId).note
+    }
 
+
+    fun getNoteData(noteId: Long, callback: (String) -> Unit)  {
 
         GlobalScope.launch(Dispatchers.Main) {
             var noteData = async(IO){

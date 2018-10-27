@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.tomberghuis.personalnotes.R
 import com.tomberghuis.personalnotes.data.Note
 import com.tomberghuis.personalnotes.data.NoteRepository
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class EditNoteViewModel(
@@ -20,9 +21,14 @@ class EditNoteViewModel(
     init{
 
         if(noteId!=-1L) {
-            noteRepository.getNoteData(noteId){
-                noteData -> note.setValue(noteData)
+
+            GlobalScope.launch {
+                note.postValue(noteRepository.getNoteDataAsync(noteId).await())
             }
+
+//            noteRepository.getNoteData(noteId){
+//                noteData -> note.setValue(noteData)
+//            }
             //noteRepository.loadNoteData(noteId,this)
         }
 
